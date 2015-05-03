@@ -54,7 +54,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: "/duringhaircut",
     views: {
       'menuContent': {
-        templateUrl: "templates/duringhaircut.html"
+        templateUrl: "templates/duringhaircut.html",
+        controller: "PreCameraCtrl"
       }
     }
   })
@@ -82,6 +83,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: "templates/home.html"
+      }
+    }
+  })
+
+
+  .state('app.historydetail', {
+    url: "/historydetail",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/historydetail.html"
       }
     }
   })

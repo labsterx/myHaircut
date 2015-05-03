@@ -61,54 +61,28 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PreCameraCtrl', function($scope, $state, $rootScope, Camera) {
+.controller('CameraAfterCtrl', function($scope, Camera) {
 
-  $rootScope.currentPhotoUrl = null;
-  $scope.takingPhoto = false;
+  $scope.showInfoForm = false;
 
-  $scope.getBeforePhoto = function() {
-    $scope.takingPhoto = true;
-    Camera.getPicture().then(function(imageURI) {
-      console.log(imageURI);
-      $rootScope.currentPhotoUrl = imageURI;
-      $state.go('app.camerabefore');
-      $scope.takingPhoto = false;
-    }, function(err) {
-      console.err(err);
-    });
+  $scope.toggleShowInfoForm = function() {
+    $scope.showInfoForm = !$scope.showInfoForm;
   };
-
-
-  $scope.getAfterPhoto = function() {
-    $scope.takingPhoto = true;
-    Camera.getPicture().then(function(imageURI) {
-      console.log(imageURI);
-      $rootScope.currentPhotoUrl = imageURI;
-      $state.go('app.cameraafter');
-      $scope.takingPhoto = false;
-    }, function(err) {
-      console.err(err);
-    });
-  };
-
-  $scope.submitPhoto = function() {
-    $rootScope.currentPhotoUrl = null;
-    $scope.submitted = true;
-  }
 
 })
 
 .controller('PreCameraCtrl', function($scope, $state, $rootScope, Camera) {
 
-  $rootScope.currentPhotoUrl = null;
+  // $rootScope.currentBeforePhotoUrl = null;
+  // $rootScope.currentAfterPhotoUrl = null;
   $scope.takingPhoto = false;
 
   $scope.getBeforePhoto = function() {
+    $state.go('app.camerabefore');
     $scope.takingPhoto = true;
     Camera.getPicture().then(function(imageURI) {
       console.log(imageURI);
-      $rootScope.currentPhotoUrl = imageURI;
-      $state.go('app.camerabefore');
+      $rootScope.currentBeforePhotoUrl = imageURI;
       $scope.takingPhoto = false;
     }, function(err) {
       console.err(err);
@@ -117,11 +91,11 @@ angular.module('starter.controllers', [])
 
 
   $scope.getAfterPhoto = function() {
+    $state.go('app.browse');
     $scope.takingPhoto = true;
     Camera.getPicture().then(function(imageURI) {
       console.log(imageURI);
-      $rootScope.currentPhotoUrl = imageURI;
-      $state.go('app.cameraafter');
+      $rootScope.currentAfterPhotoUrl = imageURI;
       $scope.takingPhoto = false;
     }, function(err) {
       console.err(err);
@@ -129,9 +103,8 @@ angular.module('starter.controllers', [])
   };
 
   $scope.submitPhoto = function() {
-    $rootScope.currentPhotoUrl = null;
     $scope.submitted = true;
-  };
+  }
 
 })
 

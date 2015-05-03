@@ -3,17 +3,17 @@
 <div class="list card">
 
   <div class="item item-body">
-    <img class="full-image" src="{{currentPhotoUrl}}" />
+    <img class="full-image" src="{{currentBeforePhotoUrl}}" />
     <p>
       Before Haircut
     </p>
-    <!-- <p>{{currentPhotoUrl}}</p> -->
+    <p>{{currentBeforePhotoUrl}}</p>
   </div>
 
   <div class="item">
     <div>
       <a class="" ng-click="toggleShowInfoForm()">
-      <i class="ion-document-text" style="font-size: 25px; marin"></i> Add Notes  
+      <i class="ion-document-text" style="font-size: 25px; marin"></i> Add Notes
       </a>
     </div>
     <div ng-show="showInfoForm">
@@ -32,7 +32,7 @@
   </div>
 
   <div class="item">
-    <a class="button button-block button-positive">Save</a>
+    <a class="button button-block button-positive" href="#/app/duringhaircut">Save</a>
   </div>
 
 </div>
