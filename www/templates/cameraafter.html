@@ -10,6 +10,34 @@
   </div>
 
   <div class="item">
+    <div>
+      <a class="" ng-click="toggleShowInfoForm()">
+      <i class="ion-document-text" style="font-size: 25px; marin"></i> Add Notes  
+      </a>
+    </div>
+    <div ng-show="showInfoForm">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" placeholder="Barbershop Name">
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Your barber's name">
+        </label>
+        <label class="item item-input">
+          <textarea placeholder="Notes"></textarea>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 25px;">
+  	<i class="ion-thumbsup positive" style="font-size: 35px;" ng-click="submitRating(true)"></i>
+  	<i class="ion-thumbsdown assertive" style="font-size: 35px; margin-left: 20px;" ng-click="submitRating(false)"></i>
+  	<h3 style="display: inline-block;">{{ rating }}</h3>
+  </div>
+
+
+
+  <div class="item">
     <a class="button button-block button-positive">Save</a>
   </div>
 

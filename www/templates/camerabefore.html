@@ -11,9 +11,23 @@
   </div>
 
   <div class="item">
-    <div><a class="" ng-click="toggleShowInfoForm()">Add Info</a></div>
+    <div>
+      <a class="" ng-click="toggleShowInfoForm()">
+      <i class="ion-document-text" style="font-size: 25px; marin"></i> Add Notes  
+      </a>
+    </div>
     <div ng-show="showInfoForm">
-      Blah blah blah
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" placeholder="Barbershop Name">
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Your barber's name">
+        </label>
+        <label class="item item-input">
+          <textarea placeholder="Notes"></textarea>
+        </label>
+      </div>
     </div>
   </div>
 
