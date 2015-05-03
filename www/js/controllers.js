@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('CameraBeforeCtrl', function($scope) {
+.controller('CameraBeforeCtrl', function($scope, Camera) {
 
   $scope.showInfoForm = false;
 
@@ -41,6 +41,23 @@ angular.module('starter.controllers', [])
     console.log('toggle');
     $scope.showInfoForm = !$scope.showInfoForm;
   };
+
+  $scope.imgUrl = null;
+  $scope.submitted = false;
+
+  $scope.getPhoto = function() {
+    Camera.getPicture().then(function(imageURI) {
+      console.log(imageURI);
+      $scope.imgUrl = imageURI;
+    }, function(err) {
+      console.err(err);
+    });
+  };
+
+  $scope.submitPhoto = function() {
+    $scope.imgUrl = null;
+    $scope.submitted = true;
+  }
 
 })
 

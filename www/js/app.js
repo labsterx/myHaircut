@@ -76,16 +76,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('app.single', {
-    url: "/playlists/:playlistId",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/playlist.html",
-        controller: 'PlaylistCtrl'
-      }
-    }
-  })
-
   .state('app.map', {
     url: "/map",
     views: {
@@ -96,4 +86,22 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
-});
+})
+
+.factory('Camera', ['$q', function($q) {
+
+  return {
+    getPicture: function(options) {
+      var q = $q.defer();
+
+      navigator.camera.getPicture(function(result) {
+        // Do any magic you need
+        q.resolve(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+
+      return q.promise;
+    }
+  }
+}]);
