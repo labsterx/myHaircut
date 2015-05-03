@@ -1,5 +1,23 @@
 angular.module('starter.controllers', [])
 
+.factory('Camera', ['$q', function($q) {
+
+  return {
+    getPicture: function(options) {
+      var q = $q.defer();
+
+      navigator.camera.getPicture(function(result) {
+        // Do any magic you need
+        q.resolve(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+
+      return q.promise;
+    }
+  }
+}])
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
   $scope.loginData = {};
@@ -42,24 +60,45 @@ angular.module('starter.controllers', [])
     $scope.showInfoForm = !$scope.showInfoForm;
   };
 
-  $scope.imgUrl = null;
-  $scope.submitted = false;
+})
 
-  $scope.getPhoto = function() {
+.controller('PreCameraCtrl', function($scope, $state, $rootScope, Camera) {
+
+  $rootScope.currentPhotoUrl = null;
+  $scope.takingPhoto = false;
+
+  $scope.getBeforePhoto = function() {
+    $scope.takingPhoto = true;
     Camera.getPicture().then(function(imageURI) {
       console.log(imageURI);
-      $scope.imgUrl = imageURI;
+      $rootScope.currentPhotoUrl = imageURI;
+      $state.go('app.camerabefore');
+      $scope.takingPhoto = false;
+    }, function(err) {
+      console.err(err);
+    });
+  };
+
+
+  $scope.getAfterPhoto = function() {
+    $scope.takingPhoto = true;
+    Camera.getPicture().then(function(imageURI) {
+      console.log(imageURI);
+      $rootScope.currentPhotoUrl = imageURI;
+      $state.go('app.cameraafter');
+      $scope.takingPhoto = false;
     }, function(err) {
       console.err(err);
     });
   };
 
   $scope.submitPhoto = function() {
-    $scope.imgUrl = null;
+    $rootScope.currentPhotoUrl = null;
     $scope.submitted = true;
   }
 
 })
+
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });
