@@ -18,8 +18,23 @@ angular.module('starter.controllers', [])
   }
 }])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $rootScope, $timeout) {
   // Form data for the login modal
+
+  console.log(window.navigator.platform);
+
+  $scope.isMobile = function() {
+    if (window.navigator.platform == 'MacIntel') {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  $rootScope.currentBeforePhotoUrl = "/img/hair_before.jpg";
+  $rootScope.currentAfterPhotoUrl = "/img/hair_after.jpg";
+
   $scope.loginData = {};
 
   // Create the login modal that we will use later
@@ -73,8 +88,6 @@ angular.module('starter.controllers', [])
 
 .controller('PreCameraCtrl', function($scope, $state, $rootScope, Camera) {
 
-  // $rootScope.currentBeforePhotoUrl = null;
-  // $rootScope.currentAfterPhotoUrl = null;
   $scope.takingPhoto = false;
 
   $scope.getBeforePhoto = function() {
@@ -91,6 +104,10 @@ angular.module('starter.controllers', [])
 
 
   $scope.getAfterPhoto = function() {
+    if (window.navigator.platform == 'MacIntel') {
+      $state.go('app.cameraafter');
+      return;
+    };
     $state.go('app.browse');
     $scope.takingPhoto = true;
     Camera.getPicture().then(function(imageURI) {
