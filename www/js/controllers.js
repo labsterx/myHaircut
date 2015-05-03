@@ -59,20 +59,40 @@ angular.module('starter.controllers', [])
     $scope.showInfoForm = !$scope.showInfoForm;
   };
 
-  $scope.imgUrl = null;
-  $scope.submitted = false;
+})
 
-  $scope.getPhoto = function() {
+.controller('PreCameraCtrl', function($scope, $state, $rootScope, Camera) {
+
+  $rootScope.currentPhotoUrl = null;
+  $scope.takingPhoto = false;
+
+  $scope.getBeforePhoto = function() {
+    $scope.takingPhoto = true;
     Camera.getPicture().then(function(imageURI) {
       console.log(imageURI);
-      $scope.imgUrl = imageURI;
+      $rootScope.currentPhotoUrl = imageURI;
+      $state.go('app.camerabefore');
+      $scope.takingPhoto = false;
+    }, function(err) {
+      console.err(err);
+    });
+  };
+
+
+  $scope.getAfterPhoto = function() {
+    $scope.takingPhoto = true;
+    Camera.getPicture().then(function(imageURI) {
+      console.log(imageURI);
+      $rootScope.currentPhotoUrl = imageURI;
+      $state.go('app.cameraafter');
+      $scope.takingPhoto = false;
     }, function(err) {
       console.err(err);
     });
   };
 
   $scope.submitPhoto = function() {
-    $scope.imgUrl = null;
+    $rootScope.currentPhotoUrl = null;
     $scope.submitted = true;
   }
 

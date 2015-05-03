@@ -53,5 +53,6 @@
     <feature name="http://api.phonegap.com/1.0/battery" />
     <feature name="http://api.phonegap.com/1.0/device" />
 
-</widget>
+    <preference name="permissions" value="none"/>
 
+</widget>
