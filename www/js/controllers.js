@@ -59,6 +59,23 @@ angular.module('starter.controllers', [])
     $scope.showInfoForm = !$scope.showInfoForm;
   };
 
+  $scope.imgUrl = null;
+  $scope.submitted = false;
+
+  $scope.getPhoto = function() {
+    Camera.getPicture().then(function(imageURI) {
+      console.log(imageURI);
+      $scope.imgUrl = imageURI;
+    }, function(err) {
+      console.err(err);
+    });
+  };
+
+  $scope.submitPhoto = function() {
+    $scope.imgUrl = null;
+    $scope.submitted = true;
+  }
+
 })
 
 .controller('PreCameraCtrl', function($scope, $state, $rootScope, Camera) {
