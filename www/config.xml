@@ -3,18 +3,18 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.labsterx.app.myhaircut"
         versionCode = "1"
-        version     = "0.0.1" >
+        version     = "0.0.2" >
 
     <preference name="phonegap-version" value="3.7.0" />
 
     <name>MyHaircut</name>
 
     <description>
-        My Hair
+        My Haircut
     </description>
 
     <author email="labsterx@gmail.com" href="http://www.labsterx.com/">
-      LabsterX
+      MyHairCut Team in LBS Hackthon 2015
     </author>
 
     <content src="index.html" />
